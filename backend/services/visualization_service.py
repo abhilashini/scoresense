@@ -3,6 +3,8 @@ import random
 from typing import Any, Dict, Optional, Type, Tuple, List
 from google import genai
 from google.genai import types
+import traceback
+import base64
 
 # Use relative import for modularity
 from ..prompts import GraphicScorePrompts, response_art_config
@@ -79,12 +81,19 @@ class VisualizationGenerator:
             image_base64 = ""
             for part in response_art.candidates[0].content.parts:
                 if part.inline_data:
-                    # Retrieve the base64 data
-                    image_base64 = part.inline_data.data
-                    # Convert bytes to utf-8 string for JSON serialization
-                    if isinstance(image_base64, bytes):
-                        image_base64 = image_base64.decode('utf-8') 
-                    break 
+                    raw_data = part.inline_data.data # This retrieves the data
+                    
+                    if isinstance(raw_data, str):
+                        # Case 1: Data is already a Base64 string
+                        image_base64 = raw_data
+                    elif isinstance(raw_data, bytes):
+                        # Case 2: Data is raw binary bytes
+                        # MUST base64 encode the bytes first, then decode the result to a string.
+                        image_base64 = base64.b64encode(raw_data).decode('utf-8') # <-- CRITICAL FIX
+                    else:
+                        raise TypeError(f"Unexpected data type returned for image: {type(raw_data)}")
+                        
+                    break # Stop after finding the first inline data part
             
             if not image_base64:
                  raise Exception("No image data found in response.")
@@ -100,4 +109,5 @@ class VisualizationGenerator:
 
         except Exception as e:
             print(f"ERROR: Image generation failed for {name}: {e}")
+            traceback.print_exc()
             return {"error": f"Image generation failed: {e}", "status": 500}
