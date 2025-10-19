@@ -6,4 +6,6 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  /* Optional: Set a light background for the whole page */
+  background-color: #f9fafb; 
 }
