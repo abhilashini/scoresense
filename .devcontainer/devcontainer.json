@@ -1,0 +1,43 @@
+{
+  "name": "ScoreSense Music Visualizer (Root)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  
+  // Set PYTHONPATH to include the root directory for cleaner imports
+  "containerEnv": {
+    "PYTHONPATH": "${containerWorkspaceFolder}"
+  },
+  
+  // Install dependencies: Python (Flask, Gemini) and Node (React, Tailwind, Vite)
+  "postCreateCommand": "pip install -r requirements.txt && npm install --prefix ./frontend && echo 'Dev container setup complete!'",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        // Add backend as a source root to help the linter
+        "python.analysis.extraPaths": ["./backend"]
+      },
+      "extensions": [
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+
+  "forwardPorts": [5000, 3000],
+
+  "portsAttributes": {
+    "5000": { "label": "Flask API", "onAutoForward": "notify" },
+    "3000": { "label": "React Frontend", "onAutoForward": "openBrowser" }
+  },
+
+  // Start both the frontend dev server and the Flask API
+  // NOTE: We use 'flask run' here, which handles module imports correctly.
+  "postStartCommand": "npm run dev --prefix ./frontend & flask --app backend.app run --host 0.0.0.0 --port 5000"
+}
