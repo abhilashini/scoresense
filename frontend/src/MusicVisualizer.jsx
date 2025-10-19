@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-// Rely on NPM installed packages for icons (Lucide)
 import { Upload, Music, Loader, Wand, Info } from 'lucide-react';
 
 // --- Loading Spinner Component: Stylized Sine Wave and Trivia ---
@@ -165,18 +164,9 @@ const App = () => {
                 <Upload className="w-5 h-5 mr-2" />
                 Upload Sheet Music (PDF Only)
             </button>
-            <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                accept=".pdf"
-                className="hidden"
-            />
             {error && <p className="mt-4 text-red-500 text-sm font-medium p-3 bg-red-50 rounded-lg">{error}</p>}
         </div>
     );
-
-    // Note: This component assumes the global imports like Upload, Wand, Music, etc., are available.
 
     const ResultDisplay = (
         <div className="bg-white rounded-xl shadow-xl transition-all duration-500 w-full overflow-hidden border border-primary-100">
@@ -214,20 +204,12 @@ const App = () => {
 
                     {/* Narration Section */}
                     <div>
-                        {/* New Title: Inclusive and Engaging */}
                         <h3 className="text-xl font-bold text-charcoal mb-3 border-b border-primary-100 pb-2">Musical Insights: A Guided Listen</h3>
 
-                        {/* Narrative Card: Flat, minimal, and sophisticated inset look */}
                         <p className="text-lg text-charcoal italic leading-relaxed bg-primary-50 p-4 rounded-lg ring-1 ring-inset ring-primary-400">
                             {/* The narration uses innerHTML to correctly render <strong> tags from the backend processing */}
                             <span dangerouslySetInnerHTML={{ __html: result?.narration || 'Narrative not available.' }} />
                         </p>
-
-                        {/* Disclaimer (Optional, if applicable) */}
-                        {/* If your backend includes a disclaimer, include it here with appropriate formatting */}
-                        {/* <p className="text-xs text-slate-light mt-4 pt-2 border-t border-gray-100">
-            <strong>Disclaimer:</strong> Visualization consistency may vary due to artistic variations in the underlying image generation model.
-          </p> */}
                     </div>
 
                     {/* Control Buttons */}
@@ -245,7 +227,7 @@ const App = () => {
 
                         {/* Upload New Sheet Music Button */}
                         <button
-                            onClick={() => fileInputRef.current.click()}
+                            onClick={() => fileInputRef.current && fileInputRef.current.click()}
                             className="w-full flex items-center justify-center mt-3 px-6 py-2 text-md font-medium rounded-lg text-primary-700 bg-primary-100 hover:bg-primary-200 transition duration-150 ease-in-out"
                         >
                             <Upload className="w-4 h-4 mr-2" />
@@ -262,6 +244,14 @@ const App = () => {
             <div className="max-w-4xl mx-auto p-4 sm:p-8">
                 {/* The application wrapper */}
                 <div className="flex flex-col items-center justify-center w-full">
+                    {/* CRITICAL FIX: The hidden file input MUST be rendered unconditionally */}
+                    <input
+                        type="file"
+                        ref={fileInputRef} // The ref is always attached here
+                        onChange={handleFileChange}
+                        accept=".pdf"
+                        className="hidden" // Keep it hidden
+                    />
 
                     {isLoading && <LoadingSpinner loadingMessage={result?.music_data ? "Generating New Visual..." : "Analyzing Sheet Music..."} />}
                     {error && <ErrorDisplay />}
