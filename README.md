@@ -1,6 +1,10 @@
 # 🎶 ScoreSense: AI-Powered Musical Visualization
 
-**ScoreSense** transforms complex PDF sheet music into accessible visual art and simple, structural narratives using the Gemini API. This project aims to bridge the gap between technical musical notation and intuitive understanding, particularly for novices, students, and those with visual or hearing impairments.
+**ScoreSense** was born from a common challenge: for many novices, sheet music is a complex, abstract barrier to intuitively feeling and understanding a piece's true emotional and dynamic structure.
+
+The project is fundamentally about bridging this gap using Generative AI. It draws inspiration from the rich tradition of graphic scores, which visualize music's form, as explored by artists like David Hall at https://davidhall.io/visualising-music-graphic-scores/. The concept is further informed by contemporary methods such as light painting music visualization [https://www.designer-daily.com/visualizing-music-with-the-help-of-light-painting-54503] and real-time visualization systems like Partitura [https://cdm.link/partitura-spectacular-real-time-visualization-of-music-and-thinking-in-1d/]. These artistic methods confirm that music, structure, and visual art are deeply interconnected—a concept explored in depth by authors like those featured at https://www.amazon.com/dp/0979554640/.
+
+ScoreSense automates this artistic translation using the Gemini API's multimodal capabilities. It translates complex PDF sheet music into accessible visual art and simple, structural narratives. This tool is designed to help novices, students, and individuals with visual or hearing impairments gain an intuitive understanding of a piece's core structure, rhythm, and emotional dynamics.
 
 ## ✨ Quick Overview
 
