@@ -6,6 +6,18 @@ The project is fundamentally about bridging this gap using Generative AI. It dra
 
 ScoreSense automates this artistic translation using the Gemini API's multimodal capabilities. It translates complex PDF sheet music into accessible visual art and simple, structural narratives. This tool is designed to help novices, students, and individuals with visual or hearing impairments gain an intuitive understanding of a piece's core structure, rhythm, and emotional dynamics.
 
+## 🖼️ Demo Gallery: Visualizing Music's Core
+
+These screenshots illustrate the ScoreSense application interface and show how complex sheet music is translated into a structured narrative and a corresponding visual score, offering an intuitive "guided listen."
+
+| Musical Score | Generated Narrative & Visualization |
+| :--- | :--- |
+| **Sonata No. 14 "Moonlight"** | assets/Moonlight.png |
+| **L'inaccessible étoile** | assets/L'inaccessible étoile.png |
+
+### Note on Visualization Consistency
+Visualization may not be pixel-for-pixel consistent across runs due to artistic variations in the underlying image generation model. The core musical data mapping, however, remains strictly deterministic.
+
 ## ✨ Quick Overview
 
 ScoreSense uses a modular, two-stage GenAI pipeline:
