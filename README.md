@@ -12,8 +12,8 @@ These screenshots illustrate the ScoreSense application interface and show how c
 
 | Musical Score | Generated Narrative & Visualization |
 | :--- | :--- |
-| **Sonata No. 14 "Moonlight"** | ![Moonlight Sonata 3D Ribbon Score](https://github.com/abhilashini/scoresense/blob/main/assets/Moonlight.png?raw=true) |
-| **L'inaccessible étoile** | ![L'inaccessible étoile Bio Luminescent Path](https://github.com/abhilashini/scoresense/blob/main/assets/L'inaccessible%20e%CC%81toile.png?raw=true) |
+| **Sonata No. 14 "Moonlight"** | ![Moonlight Sonata 3D Ribbon Score](https://github.com/abhilashini/scoresense/blob/main/screenshots/Moonlight.png?raw=true) |
+| **L'inaccessible étoile** | ![L'inaccessible étoile Bio Luminescent Path](https://github.com/abhilashini/scoresense/blob/main/screenshots/L'inaccessible%20e%CC%81toile.png?raw=true) |
 
 ### Note on Visualization Consistency
 Visualization may not be pixel-for-pixel consistent across runs due to artistic variations in the underlying image generation model. The core musical data mapping, however, remains strictly deterministic.
